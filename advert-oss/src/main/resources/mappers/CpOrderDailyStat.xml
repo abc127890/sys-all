@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ayl.advert.dao.CpOrderDailyStatDao">
+    <!--参数表-->
+    <sql id="table">cp_order_daily_stat</sql>
+
+    <sql id="base_columns">
+        ${alias}`order_id`,
+        ${alias}`date`,
+        ${alias}`complete_cnt`,
+        ${alias}`create_time`
+    </sql>
+
+    <sql id="find_columns">
+        ${alias}`id`,
+        <include refid="base_columns"/>
+    </sql>
+
+    <resultMap id="resultMap" type="com.ayl.advert.model.CpOrderDailyStat">
+        <id property="id" column="id"/>
+    </resultMap>
+
+    <select id="get" resultMap="resultMap">
+        select
+        <include refid="find_columns">
+            <property name="alias" value="t."/>
+        </include>
+        from
+        <include refid="table"/>
+        t
+        where
+        id=#{id}
+    </select>
+
+
+    <select id="getByOrderDate" resultMap="resultMap">
+        select
+        <include refid="find_columns">
+            <property name="alias" value="t."/>
+        </include>
+        from
+        <include refid="table"/>
+        t
+        where
+        order_id=#{order_id} and date=#{date}
+    </select>
+
+    <sql id="insert_columns">(
+        <include refid="base_columns">
+            <property name="alias" value=""/>
+        </include>
+        )
+    </sql>
+
+    <sql id="insert_values">(
+        #{order_id},
+        #{date},
+        #{complete_cnt},
+        #{create_time}
+      )
+    </sql>
+
+    <sql id="update_columns">
+        complete_cnt=#{complete_cnt},
+        create_time=#{create_time}
+    </sql>
+
+
+    <insert id="save" useGeneratedKeys="true" keyProperty="id">
+        insert into
+        <include refid="table"/>
+        <include refid="insert_columns"/>
+        values
+        <include refid="insert_values"/>
+    </insert>
+
+    <update id="update">
+        update
+        <include refid="table"/>
+        <set>
+            <include refid="update_columns"/>
+        </set>
+        where
+        id=#{id}
+    </update>
+
+
+    <sql id="where">
+        <where>
+            <if test="query.id!=null">
+                and t.id =#{query.id}
+            </if>
+            <if test="query.order_id!=null">
+                and t.order_id =#{query.order_id}
+            </if>
+            <if test="query.cp_id!=null">
+                and t2.cp_id =#{query.cp_id}
+            </if>
+            <if test="query.app_id!=null">
+                and t2.app_id =#{query.app_id}
+            </if>
+            <if test="query.start_time!=null and query.start_time!=''">
+                and t.date &gt;=#{query.start_time}
+            </if>
+            <if test="query.end_time!=null and query.end_time!=''">
+                and t.date &lt;=#{query.end_time}
+            </if>
+            <if test="query.date!=null and query.date!=''">
+                and t.date =#{query.date}
+            </if>
+        </where>
+    </sql>
+
+
+    <select id="findCnt" resultType="Long">
+        select
+        count(1)
+        from
+        <include refid="table"/>
+        t
+        INNER JOIN cp_order t2 ON t.order_id=t2.id
+        <include refid="where"/>
+    </select>
+
+    <select id="find" resultType="java.util.HashMap">
+        select
+        <include refid="find_columns">
+            <property name="alias" value="t."/>
+        </include>
+        ,
+        t2.unit_price,
+        t2.keyword,
+        t2.app_id
+        from
+        <include refid="table"/>
+        t
+        INNER JOIN cp_order t2 ON t.order_id=t2.id
+
+        <include refid="where"/>
+        order by t.date desc
+        limit ${start},${limit}
+    </select>
+
+
+
+    <select id="appConsumeDateStatFindCnt" resultType="Long">
+        select count(1) from (
+
+        select
+
+        t2.app_id,
+        t.date,
+        sum(t.complete_cnt),
+        sum(t.complete_cnt * t2.unit_price) total_amount
+
+
+        from
+        <include refid="table"/>
+        t
+        INNER JOIN cp_order t2 ON t.order_id=t2.id
+
+        <include refid="where"/>
+
+        group by t2.app_id,t.date
+
+        ) t
+
+    </select>
+
+    <select id="appConsumeDateStatFind" resultType="java.util.HashMap">
+
+        select t.*,t2.name app_name,t2.icon app_icon from (
+
+        select
+
+        t2.app_id,
+        t.date,
+        sum(t.complete_cnt) complete_cnt,
+        sum(t.complete_cnt * t2.unit_price) total_amount
+
+
+        from
+        <include refid="table"/>
+        t
+        INNER JOIN cp_order t2 ON t.order_id=t2.id
+
+        <include refid="where"/>
+
+        group by t2.app_id,t.date
+
+        ) t
+
+        inner join app_info t2 on t.app_id=t2.app_id
+
+        order by t.date desc
+        <if test="start!=null and limit!=null">
+          limit ${start},${limit}
+        </if>
+    </select>
+
+    <select id="appConsumeDateStat" resultType="java.util.HashMap">
+
+
+
+        select
+
+        sum(t.complete_cnt) complete_cnt,
+        sum(t.complete_cnt * t2.unit_price) total_amount
+
+
+        from
+        <include refid="table"/>
+        t
+        INNER JOIN cp_order t2 ON t.order_id=t2.id
+
+        <include refid="where"/>
+
+
+    </select>
+
+    <select id="appConsumeDateStatDetailFindCnt" resultType="Long">
+        select
+
+        count(1)
+
+        from (
+
+        select
+
+        1
+
+        from
+        <include refid="table"/>
+        t
+        INNER JOIN cp_order t2 ON t.order_id=t2.id
+
+        <include refid="where"/>
+
+        group by t2.app_id,t2.keyword,t2.unit_price
+
+        ) t
+
+    </select>
+
+    <select id="appConsumeDateStatDetailFind" resultType="java.util.HashMap">
+
+        select
+
+        t.*,
+        t2.name app_name
+
+        from (
+
+            select
+            t.date,
+            t2.app_id,
+            t2.keyword,
+            t2.unit_price,
+            SUM(t.complete_cnt) complete_cnt,
+            SUM(t.complete_cnt * t2.unit_price) amount
+
+            from
+            <include refid="table"/>
+            t
+            INNER JOIN cp_order t2 ON t.order_id=t2.id
+
+            <include refid="where"/>
+
+            group by t2.app_id,t.date,t2.keyword,t2.unit_price
+        ) t
+
+        inner join app_info t2 on t.app_id=t2.app_id
+
+        order by t.date desc
+
+        <if test="start!=null and limit!=null">
+            limit ${start},${limit}
+        </if>
+    </select>
+
+    <delete id="delete">
+        delete from <include refid="table"/> where id=#{id}
+    </delete>
+</mapper>

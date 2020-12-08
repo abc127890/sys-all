@@ -1,0 +1,28 @@
+server:
+  port: 7078
+  servlet:
+    session:
+      timeout: PT20H
+spring:
+  profiles:
+    active: @profileActive@
+  devtools:
+    restart:
+      enabled: false
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 500MB
+  jackson:
+    serialization:
+      write-dates-as-timestamps: true
+  freemarker:
+    suffix: .ftlh
+    cache: false
+    charset: UTF-8
+    check-template-location: true
+    content-type: text/html
+    expose-request-attributes: true
+    expose-session-attributes: true
+    request-context-attribute: rc
+    template-loader-path: classpath:/templates

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ayl.advert.sys.dao.SysUserDao">
+
+    <sql id="table">sys_user</sql>
+    <sql id="base_columns">
+		${alias}`user_name`,
+		${alias}`role_id`,
+		${alias}`real_name`,
+		${alias}`password`,
+        ${alias}`create_time`
+	</sql>
+    <sql id="insert_columns">(
+        <include refid="base_columns">
+            <property name="alias" value=""/>
+        </include>
+        )
+    </sql>
+    <sql id="find_columns">
+        ${alias}`id`,
+        <include refid="base_columns"/>
+    </sql>
+
+    <sql id="insert_values">(
+		#{user_name},
+		#{role_id},
+		#{real_name},
+		#{password},
+		#{create_time}
+	)</sql>
+
+    <sql id="update_columns">,
+		role_id=#{role_id},
+		real_name=#{real_name},
+	</sql>
+
+    <resultMap id="resultMap" type="com.ayl.advert.sys.model.SysUser">
+        <id property="id" column="id"/>
+    </resultMap>
+
+
+    <select id="get" resultMap="resultMap">
+        select
+        <include refid="find_columns">
+            <property name="alias" value="t."/>
+        </include>
+        from
+        <include refid="table"/>
+        t
+        where
+        id=#{id}
+    </select>
+
+    <sql id="where">
+        where t.role_id>0
+        <if test="query.id!=null">
+            and t.id=#{query.id}
+        </if>
+        <if test="query.role_id!=null">
+            and t.role_id=#{query.role_id}
+        </if>
+        <if test="query.user_name!=null and query.user_name!=''">
+            and t.user_name like CONCAT('%',#{query.user_name},'%')
+        </if>
+        <if test="query.real_name!=null and query.real_name!=''">
+            and t.real_name like CONCAT('%',#{query.real_name},'%')
+        </if>
+    </sql>
+
+
+
+    <insert id="add" useGeneratedKeys="true" keyProperty="id">
+        insert into
+        <include refid="table"/>
+        <include refid="insert_columns"/>
+        values
+        <include refid="insert_values"/>
+    </insert>
+
+    <update id="update">
+        update
+        <include refid="table"/>
+        set
+        <include refid="update_columns"/>
+        where
+        id=#{id}
+    </update>
+
+    <delete id="delete">
+        delete from
+        <include refid="table"/>
+        where id=#{id}
+    </delete>
+
+    <select id="getByUserName" resultMap="resultMap">
+        select
+        <include refid="find_columns">
+            <property name="alias" value="t."/>
+        </include>
+        from
+        <include refid="table"/>
+        t
+        where
+        t.user_name=#{user_name}
+    </select>
+
+    <update id="updatePassword">
+        update
+        <include refid="table"/>
+        set
+        password=#{password}
+        where
+        id=#{id}
+    </update>
+
+    <select id="findList" resultMap="resultMap">
+        select
+        <include refid="find_columns">
+            <property name="alias" value="t."/>
+        </include>
+        from
+        <include refid="table"/>
+        t
+        <include refid="where"/>
+
+    </select>
+
+</mapper>

@@ -1,0 +1,17 @@
+server:
+  servlet:
+    context-path: /appstore
+sys:
+  datasource:
+    jdbc-url: jdbc:mysql://rm-2ze237ymc492d3nxeyo.mysql.rds.aliyuncs.com:3306/advert?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true&pinGlobalTxToPhysicalConnection=true&serverTimezone=Asia/Shanghai
+    username: root
+    password: w7UMy5Q@5HMBX89isINz
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    minimum-idle: 5
+    maximum-pool-size: 15
+    auto-commit: true
+    idle-timeout: 300000
+    pool-name: ossHikariCP
+    max-lifetime: 1800000
+    connection-timeout: 300000
+    connection-test-query: SELECT 1
