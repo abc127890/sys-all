@@ -5,13 +5,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.ayl</groupId>
-    <artifactId>advert-all</artifactId>
+    <artifactId>sys-all</artifactId>
     <packaging>pom</packaging>
     <version>V1.0.0</version>
     <modules>
-        <module>advert-oss</module>
-        <module>advert-common</module>
-        <module>advert-model</module>
+        <module>sys-oss</module>
+        <module>sys-common</module>
     </modules>
 
     <properties>

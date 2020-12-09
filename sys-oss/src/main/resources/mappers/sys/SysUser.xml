@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ayl.advert.sys.dao.SysUserDao">
+<mapper namespace="com.sys.sys.dao.SysUserDao">
 
     <sql id="table">sys_user</sql>
     <sql id="base_columns">
@@ -35,7 +35,7 @@
 		real_name=#{real_name},
 	</sql>
 
-    <resultMap id="resultMap" type="com.ayl.advert.sys.model.SysUser">
+    <resultMap id="resultMap" type="com.sys.sys.model.SysUser">
         <id property="id" column="id"/>
     </resultMap>
 
