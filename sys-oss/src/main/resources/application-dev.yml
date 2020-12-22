@@ -5,7 +5,7 @@ sys:
   datasource:
     jdbc-url: jdbc:mysql://mysql:3306/advert?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true&pinGlobalTxToPhysicalConnection=true&serverTimezone=Asia/Shanghai
     username: root
-    password: d@#skjKJFkjsRKJFKJ39U34ddsf3
+    password: mysqlpassword
     driver-class-name: com.mysql.cj.jdbc.Driver
     minimum-idle: 5
     maximum-pool-size: 15
