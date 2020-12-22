@@ -16,6 +16,8 @@
         <button id="${moudle}-search" class="layui-btn layuiadmin-btn-list" lay-submit lay-filter="${moudle}-search">
             <i class="layui-icon layui-icon-search layuiadmin-button-btn"></i>
         </button>
+
+        <button type="reset" class="layui-btn layui-btn-primary">重置</button>
     </div>
 </div>
 <script>

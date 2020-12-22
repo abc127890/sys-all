@@ -2,7 +2,10 @@ package com.sys.common.util;
 
 import org.apache.poi.ss.usermodel.Workbook;
 
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
 public class ExcelUtil {
@@ -41,7 +44,7 @@ public class ExcelUtil {
         write(workbook, response.getOutputStream());
     }
 
-    public static void write(Workbook workbook, OutputStream outputStream) throws IOException {
+    public static void write(Workbook workbook, ServletOutputStream outputStream) throws IOException {
         workbook.write(outputStream);
         outputStream.flush();
     }

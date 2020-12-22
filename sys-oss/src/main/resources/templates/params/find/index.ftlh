@@ -15,7 +15,9 @@
 <div class="layui-fluid">
     <div class="layui-card">
         <div class="layui-form layui-card-header layuiadmin-card-header-auto">
-            <#include "search.form.ftlh">
+            <form class="layui-form" onsubmit="return false;">
+                <#include "search.form.ftlh">
+            </form>
         </div>
 
         <#include "list.ftlh">

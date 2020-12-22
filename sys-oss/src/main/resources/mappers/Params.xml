@@ -15,7 +15,7 @@
         <include refid="base_columns"/>
     </sql>
 
-    <resultMap id="resultMap" type="com.ayl.advert.model.Params">
+    <resultMap id="resultMap" type="com.sys.model.Params">
         <id property="id" column="id"/>
     </resultMap>
 

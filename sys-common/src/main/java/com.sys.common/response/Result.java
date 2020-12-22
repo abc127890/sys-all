@@ -1,4 +1,4 @@
-package com.ayl.advert.common.response;
+package com.sys.common.response;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.annotation.JSONField;

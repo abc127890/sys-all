@@ -1,7 +1,8 @@
 package com.sys.sys.action;
 
-import com.ayl.advert.common.response.Result;
-import com.ayl.advert.common.response.ResultObject;
+
+import com.sys.common.response.Result;
+import com.sys.common.response.ResultObject;
 import com.sys.sys.model.SysMenu;
 import com.sys.sys.model.SysUser;
 import com.sys.sys.right.RightInterceptor;
@@ -59,36 +60,25 @@ public class IndexAction {
 
         SysMenu root = new SysMenu();
         root.setId("1");
-        root.setName("订单");
+        root.setName("参数管理");
         root.setExpand((byte) 1);
         root.setLeaf((byte) 0);
         root.setLevel((byte) 1);
         root.setRank((byte) 1);
         List<SysMenu> childrens = new ArrayList<>();
-        if (sysUser.getRole_id() != 2) {
+
+        {
             SysMenu order = new SysMenu();
             order.setId("1-1");
-            order.setName("订单管理");
+            order.setName("参数配置");
             order.setExpand((byte) 0);
             order.setLeaf((byte) 1);
             order.setLevel((byte) 2);
             order.setRank((byte) 1);
-            order.setUrl("/cpOrder/find");
+            order.setUrl("/params/find");
             childrens.add(order);
         }
 
-
-        SysMenu consume = new SysMenu();
-        consume.setId("1-2");
-        consume.setName("订单统计");
-        consume.setExpand((byte) 0);
-        consume.setLeaf((byte) 1);
-        consume.setLevel((byte) 2);
-        consume.setRank((byte) 1);
-        consume.setUrl("/cpOrderDailyStat/date/stat/find");
-
-
-        childrens.add(consume);
         root.setChildrens(childrens);
 
         List<SysMenu> roots = new ArrayList<>();

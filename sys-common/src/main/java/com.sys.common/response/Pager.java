@@ -1,4 +1,4 @@
-package com.ayl.advert.common.response;
+package com.sys.common.response;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;

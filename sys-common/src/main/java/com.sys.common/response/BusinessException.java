@@ -1,4 +1,6 @@
-package com.ayl.advert.common.response;
+package com.sys.common.response;
+
+import com.sys.common.response.Result;
 
 /**
  * @author wfd

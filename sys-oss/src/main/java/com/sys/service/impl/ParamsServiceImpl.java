@@ -1,7 +1,9 @@
 package com.sys.service.impl;
 
-import com.ayl.advert.common.response.Pager;
-import com.ayl.advert.model.Params;
+import com.sys.common.response.Pager;
+import com.sys.dao.ParamsDao;
+import com.sys.model.Params;
+import com.sys.service.ParamsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;

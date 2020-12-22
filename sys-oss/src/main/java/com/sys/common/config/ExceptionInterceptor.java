@@ -1,8 +1,8 @@
 package com.sys.common.config;
 
 
-import com.ayl.advert.common.response.BusinessException;
-import com.ayl.advert.common.response.Result;
+import com.sys.common.response.BusinessException;
+import com.sys.common.response.Result;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.ControllerAdvice;

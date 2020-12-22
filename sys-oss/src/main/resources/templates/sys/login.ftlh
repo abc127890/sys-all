@@ -13,7 +13,7 @@
 
     <div class="layadmin-user-login-main">
         <div class="layadmin-user-login-box layadmin-user-login-header">
-            <h2>APP Store 平台</h2>
+            <h2>${Title}</h2>
         </div>
         <form class="layui-form" onsubmit="layui.$('#login-btn').trigger('click');return false;">
             <div class="layadmin-user-login-box layadmin-user-login-body layui-form">

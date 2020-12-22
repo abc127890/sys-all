@@ -1,15 +1,17 @@
 <script>
     ${moudle}.delete = function (data) {
         top.layui.layer.confirm("是否确定删除吗？", function (index) {
-            ${moudle}.__delete(data, function () {
-                ${moudle}.reload();
+        ${moudle}.
+            __delete(data, function () {
+            ${moudle}.
+                reload();
                 top.layui.layer.msg('删除成功');
             });
         });
     };
 
     ${moudle}.__delete = function (data, callback) {
-        var $ = layui.$;
+        var $ = top.layui.$;
         $.ajax({
             url: "${moudle}/delete",
             data: {
@@ -41,18 +43,21 @@
             return item.id;
         });
 
+
         let title = ids.length == 1 ? '是否确定删除吗？' : '是否确定进行批量删除吗？';
 
         top.layui.layer.confirm(title, function (index) {
-            ${moudle}.__deletes(ids, function () {
-                ${moudle}.reload();
+        ${moudle}.
+            __deletes(ids, function () {
+            ${moudle}.
+                reload();
                 top.layui.layer.msg('已删除');
             })
         });
 
     };
     ${moudle}.__deletes = function (ids, callback) {
-        var $ = layui.$;
+        var $ = top.layui.$;
         $.ajax({
             url: "${moudle}/deletes",
             data: {

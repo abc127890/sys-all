@@ -1,7 +1,7 @@
 package com.sys.sys.right;
 
 import com.alibaba.fastjson.JSON;
-import com.ayl.advert.common.response.Result;
+import com.sys.common.response.Result;
 import com.sys.sys.model.SysUser;
 import com.sys.sys.session.LoginUtil;
 import org.springframework.web.method.HandlerMethod;

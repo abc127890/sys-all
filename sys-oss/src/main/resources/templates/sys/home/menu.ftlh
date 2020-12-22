@@ -9,7 +9,6 @@
         font-size: 13px;
         background: url("logo.png") no-repeat center;
         background-size:99.9% 99.9%;
-
     }
 </style>
 <div class="layui-side layui-side-menu">

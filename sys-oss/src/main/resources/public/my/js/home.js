@@ -26,7 +26,6 @@ function initMenu(){
             var menu = $("#menu");
             var first_id=null;
             $.each(data.data, function(i,item){
-
                 let menu_1=`
                     <li data-name="${item.id}" class="layui-nav-item  ${item.leaf==1?'':'layui-nav-itemed'}">
                         <a href="javascript:;" ${item.leaf==1?"lay-href='"+item.url+"'":""} lay-tips="${item.name}" lay-direction="2">

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <#include "../../head.ftlh">
-    <script src="${RootPath}/layui-v2.5.6/layui/layui.js"></script>
+    <script src="${RootPath}/layui/layui.js"></script>
 </head>
 <body class="layui-layout-body">
     <div id="LAY_app">
@@ -16,7 +16,7 @@
             <!-- 辅助元素，一般用于移动设备下遮罩 -->
             <div class="layadmin-body-shade" layadmin-event="shade"></div>
             <!-- 主体内容 -->
-            <div class="layui-body" id="LAY_app_body">
+            <div class="layui-body" id="LAY_app_body" style="margin-right: 5px">
                 <div class="layadmin-tabsbody-item layui-show">
                     <#include "index.ftlh">
                 </div>

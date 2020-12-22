@@ -18,7 +18,7 @@ import javax.sql.DataSource;
  * @author wfd
  */
 @Configuration
-@MapperScan(basePackages = {"com.ayl.advert.dao", "com.ayl.advert.sys.dao"}, sqlSessionTemplateRef = "sqlSessionTemplate")
+@MapperScan(basePackages = {"com.sys.dao", "com.sys.sys.dao"}, sqlSessionTemplateRef = "sqlSessionTemplate")
 public class MybatisConfiguration {
 
     @Bean(name = "sqlSessionFactory")

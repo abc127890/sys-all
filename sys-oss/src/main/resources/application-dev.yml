@@ -1,11 +1,11 @@
 server:
   servlet:
-    context-path: /appstore
+    context-path: /app
 sys:
   datasource:
-    jdbc-url: jdbc:mysql://rm-2ze237ymc492d3nxeyo.mysql.rds.aliyuncs.com:3306/advert?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true&pinGlobalTxToPhysicalConnection=true&serverTimezone=Asia/Shanghai
+    jdbc-url: jdbc:mysql://mysql:3306/advert?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&transformedBitIsBoolean=true&pinGlobalTxToPhysicalConnection=true&serverTimezone=Asia/Shanghai
     username: root
-    password: w7UMy5Q@5HMBX89isINz
+    password: d@#skjKJFkjsRKJFKJ39U34ddsf3
     driver-class-name: com.mysql.cj.jdbc.Driver
     minimum-idle: 5
     maximum-pool-size: 15

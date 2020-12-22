@@ -57,7 +57,7 @@
     })
 
     ${moudle}.submit=function (data,callback) {
-        var $ = layui.$;
+        let $ = top.layui.$;
         $.ajax({
             url:"${moudle}/add",
             data:data,
